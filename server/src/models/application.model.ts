@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { ApplicationType } from '../interfaces/application.interface';
+import { ApplicationStatus } from '../constants/application.constants';
 
 export const ApplicationSchema = new Schema<ApplicationType>(
   {
@@ -8,6 +9,7 @@ export const ApplicationSchema = new Schema<ApplicationType>(
     job: { type: Schema.Types.ObjectId, ref: 'job', required: true },
     expectedSalary: { type: Number, required: true },
     experience: { type: Number },
+    status: { type: String, enum: ApplicationStatus, default: 'ON_HOLD' },
   },
   { timestamps: true },
 );

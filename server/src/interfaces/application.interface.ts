@@ -13,4 +13,5 @@ export type ApplicationType = {
   imageUrl: string;
   experience?: number;
   expectedSalary: number;
+  status: ApplicationStatusType;
 };

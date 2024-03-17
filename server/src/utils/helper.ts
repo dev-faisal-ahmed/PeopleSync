@@ -12,3 +12,7 @@ export function FieldPicker(params: Record<string, string>, fields: string[]) {
   );
   return searchParam;
 }
+
+export function ConvertToLowerCase(texts: string[]) {
+  return texts.map((text) => text.toLowerCase());
+}

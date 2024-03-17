@@ -12,4 +12,14 @@ const CreateJob = TryCatch(async (req, res) => {
   });
 });
 
-export const JobController = { CreateJob };
+const GetJobs = TryCatch(async (req, res) => {
+  const jobs = await JobServices.GetJobs(req.query as Record<string, string>);
+
+  return SendSuccessResponse(res, {
+    data: jobs,
+    message: 'Job Created Successfully',
+    status: 200,
+  });
+});
+
+export const JobController = { CreateJob, GetJobs };

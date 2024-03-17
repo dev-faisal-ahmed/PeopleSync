@@ -62,20 +62,16 @@ async function GetApplication(query: Record<string, string>) {
 
   // for the which needs to be  matched exactly
   const exactMath = FieldPicker(query, ApplicationFilterFields.exactMatch);
-  if (Object.keys(exactMath).length) {
-    Object.keys(exactMath).forEach((key) => {
-      findQuery[key] = exactMath[key].toLowerCase();
-    });
-  }
+  Object.keys(exactMath).forEach((key) => {
+    findQuery[key] = exactMath[key].toLowerCase();
+  });
 
   // for pagination
   const page = Number(query.page) || 1;
   const limit = Number(query.limit) || 5;
 
   const applications = await Application.find(findQuery)
-    .sort({
-      createdAt: -1,
-    })
+    .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit);
   return applications;

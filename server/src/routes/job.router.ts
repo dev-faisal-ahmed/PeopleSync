@@ -12,3 +12,5 @@ JobRouter.post(
   Validator(JobValidation.CreateJobValidationSchema),
   JobController.CreateJob,
 );
+
+JobRouter.get('/', JobController.GetJobs);

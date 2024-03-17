@@ -1,6 +1,9 @@
-import { z } from 'zod';
+import { string, z } from 'zod';
 import { RequiredMsg } from '../utils/helper';
-import { ApplicantsGenders } from '../constants/application.constants';
+import {
+  ApplicantsGenders,
+  ApplicationStatus,
+} from '../constants/application.constants';
 
 const CreateApplicationValidationSchema = z.object({
   job: z.string({ required_error: RequiredMsg('Job Id') }),
@@ -11,8 +14,20 @@ const CreateApplicationValidationSchema = z.object({
   gender: z.enum([...(ApplicantsGenders as [string, ...string[]])]),
 });
 
-export const ApplicationValidation = { CreateApplicationValidationSchema };
+const UpdateApplicationStatusValidation = z.object({
+  applicationId: z.string(),
+  status: z.enum([...(ApplicationStatus as [string, ...string[]])]),
+});
+
+export const ApplicationValidation = {
+  CreateApplicationValidationSchema,
+  UpdateApplicationStatusValidation,
+};
 
 export type CreateApplicationValidationSchemaType = z.infer<
   typeof CreateApplicationValidationSchema
+>;
+
+export type UpdateApplicationStatusValidationType = z.infer<
+  typeof UpdateApplicationStatusValidation
 >;

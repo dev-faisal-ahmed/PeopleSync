@@ -24,4 +24,20 @@ const GetApplication = TryCatch(async (req, res) => {
   });
 });
 
-export const ApplicationController = { CreateApplication, GetApplication };
+const UpdateApplicationStatus = TryCatch(async (req, res) => {
+  const updatedApplication = await ApplicationServices.UpdateApplicationStatus(
+    req.body,
+  );
+
+  return SendSuccessResponse(res, {
+    data: updatedApplication,
+    message: 'Application Updated',
+    status: 200,
+  });
+});
+
+export const ApplicationController = {
+  CreateApplication,
+  GetApplication,
+  UpdateApplicationStatus,
+};

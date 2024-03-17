@@ -6,6 +6,8 @@ import { AppError } from '../utils/app-error';
 import { Job } from '../models/job.model';
 import { FieldPicker } from '../utils/helper';
 import { ApplicationFilterFields } from '../constants/application.constants';
+import { ApplicationStatusType } from '../interfaces/application.interface';
+import { UpdateApplicationStatusValidationType } from '../validation/application.validation';
 
 async function CreateApplication(payload: CreateJobValidationSchemaType) {
   const session = await mongoose.startSession();
@@ -79,4 +81,42 @@ async function GetApplication(query: Record<string, string>) {
   return applications;
 }
 
-export const ApplicationServices = { CreateApplication, GetApplication };
+async function UpdateApplicationStatus(
+  payload: UpdateApplicationStatusValidationType,
+) {
+  const application = await Application.findById(payload.applicationId);
+  if (!application) throw new AppError('No Application Found!', HTTP.NOT_FOUND);
+
+  /* 
+   * on_hold => inprogress => shortlisted
+   * on_hold | inprogress => rejected
+   ! shortlisted !=> rejected
+   ! rejected !=> on_hold | inprogress | shortlisted
+  */
+
+  const updateRules: Record<ApplicationStatusType, ApplicationStatusType[]> = {
+    on_hold: ['in_process', 'rejected'],
+    in_process: ['shortlisted', 'rejected'],
+    shortlisted: [],
+    rejected: [],
+  };
+
+  const { status } = application.toObject();
+  if (!updateRules[status].includes(payload.status as ApplicationStatusType))
+    throw new AppError(
+      `Updating Status ${payload.status} from ${status} is not allowed`,
+      HTTP.BAD_REQUEST,
+    );
+
+  // updating status
+  application.status = payload.status as ApplicationStatusType;
+  await application.save();
+
+  return application;
+}
+
+export const ApplicationServices = {
+  CreateApplication,
+  GetApplication,
+  UpdateApplicationStatus,
+};

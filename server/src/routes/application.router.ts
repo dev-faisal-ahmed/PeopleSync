@@ -12,4 +12,11 @@ ApplicationRouter.post(
   ApplicationController.CreateApplication,
 );
 
+ApplicationRouter.patch(
+  '/',
+  AuthGuard(),
+  Validator(ApplicationValidation.UpdateApplicationStatusValidation),
+  ApplicationController.UpdateApplicationStatus,
+);
+
 ApplicationRouter.get('/', AuthGuard(), ApplicationController.GetApplication);

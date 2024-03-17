@@ -1,1 +1,2 @@
-export * from './auth/login.validation.schema';
+export * from './auth.validation.schema';
+export * from './job.validation.schema';

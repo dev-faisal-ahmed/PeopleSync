@@ -1,4 +1,4 @@
-import { AuthServices } from '../services/auth.services';
+import { AuthServices } from '../services';
 import { SendSuccessResponse } from '../utils/response-helper';
 import { TryCatch } from '../utils/try-catch';
 

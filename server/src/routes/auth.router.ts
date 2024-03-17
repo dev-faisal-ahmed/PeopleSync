@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import { Validator } from '../middleware/validator';
-import { LoginValidationSchema } from '../validation';
+
 import { AuthController } from '../controller';
+import { AuthValidation } from '../validation';
 
 export const AuthRouter = Router();
 
 AuthRouter.post(
   '/login',
-  Validator(LoginValidationSchema),
+  Validator(AuthValidation.LoginValidationSchema),
   AuthController.Login,
 );

@@ -1,6 +1,9 @@
 import { Schema, model } from 'mongoose';
 import { ApplicationType } from '../interfaces/application.interface';
-import { ApplicationStatus } from '../constants/application.constants';
+import {
+  ApplicantsGenders,
+  ApplicationStatus,
+} from '../constants/application.constants';
 
 export const ApplicationSchema = new Schema<ApplicationType>(
   {
@@ -10,6 +13,7 @@ export const ApplicationSchema = new Schema<ApplicationType>(
     expectedSalary: { type: Number, required: true },
     experience: { type: Number },
     status: { type: String, enum: ApplicationStatus, default: 'ON_HOLD' },
+    gender: { type: String, enum: ApplicantsGenders, required: true },
   },
   { timestamps: true },
 );

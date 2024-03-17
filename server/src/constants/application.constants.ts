@@ -1,4 +1,7 @@
-import { ApplicationStatusType } from '../interfaces/application.interface';
+import {
+  ApplicationStatusType,
+  GenderType,
+} from '../interfaces/application.interface';
 
 export const ApplicationStatus: ApplicationStatusType[] = [
   'ON_HOLD',
@@ -6,3 +9,5 @@ export const ApplicationStatus: ApplicationStatusType[] = [
   'SHORTLISTED',
   'REJECTED',
 ];
+
+export const ApplicantsGenders: GenderType[] = ['male', 'female'];

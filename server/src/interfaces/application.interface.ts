@@ -6,6 +6,8 @@ export type ApplicationStatusType =
   | 'SHORTLISTED'
   | 'REJECTED';
 
+export type GenderType = 'male' | 'female';
+
 export type ApplicationType = {
   _id: Schema.Types.ObjectId;
   job: Schema.Types.ObjectId;
@@ -14,4 +16,5 @@ export type ApplicationType = {
   experience?: number;
   expectedSalary: number;
   status: ApplicationStatusType;
+  gender: GenderType;
 };

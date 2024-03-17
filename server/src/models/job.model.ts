@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { JobType } from '../interfaces/jod.interface';
+import { JobType } from '../interfaces/job.interface';
 
 export const JobSchema = new Schema<JobType>(
   {
@@ -9,6 +9,7 @@ export const JobSchema = new Schema<JobType>(
     experienceRequired: { type: Number },
     vacancy: { type: Number, required: true },
     skillsSet: [{ type: String, required: true }],
+    applications: [{ type: Schema.Types.ObjectId, default: [] }],
   },
   { timestamps: true },
 );

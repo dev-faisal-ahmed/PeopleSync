@@ -8,4 +8,5 @@ export type JobType = {
   salary: number;
   vacancy: number;
   experienceRequired?: number;
+  applications: Schema.Types.ObjectId[];
 };

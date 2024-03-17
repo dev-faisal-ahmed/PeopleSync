@@ -12,4 +12,16 @@ const CreateApplication = TryCatch(async (req, res) => {
   });
 });
 
-export const ApplicationController = { CreateApplication };
+const GetApplication = TryCatch(async (req, res) => {
+  const applications = await ApplicationServices.GetApplication(
+    req.query as Record<string, string>,
+  );
+
+  return SendSuccessResponse(res, {
+    data: applications,
+    message: 'Application Retrieved',
+    status: 200,
+  });
+});
+
+export const ApplicationController = { CreateApplication, GetApplication };

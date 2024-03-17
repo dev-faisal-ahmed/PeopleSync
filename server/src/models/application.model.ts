@@ -12,7 +12,7 @@ export const ApplicationSchema = new Schema<ApplicationType>(
     job: { type: Schema.Types.ObjectId, ref: 'job', required: true },
     expectedSalary: { type: Number, required: true },
     experience: { type: Number },
-    status: { type: String, enum: ApplicationStatus, default: 'ON_HOLD' },
+    status: { type: String, enum: ApplicationStatus, default: 'on_hold' },
     gender: { type: String, enum: ApplicantsGenders, required: true },
   },
   { timestamps: true },

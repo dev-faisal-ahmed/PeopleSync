@@ -6,6 +6,8 @@ async function CreateJob(payload: CreateJobValidationSchemaType) {
   return newJob;
 }
 
+async function GetJobs() {}
+
 export const JobServices = {
   CreateJob,
 };

@@ -1,10 +1,10 @@
 import { Schema } from 'mongoose';
 
 export type ApplicationStatusType =
-  | 'ON_HOLD'
-  | 'IN_PROCESS'
-  | 'SHORTLISTED'
-  | 'REJECTED';
+  | 'on_hold'
+  | 'in_process'
+  | 'shortlisted'
+  | 'rejected';
 
 export type GenderType = 'male' | 'female';
 

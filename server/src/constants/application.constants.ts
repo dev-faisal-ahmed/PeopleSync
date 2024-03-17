@@ -4,10 +4,14 @@ import {
 } from '../interfaces/application.interface';
 
 export const ApplicationStatus: ApplicationStatusType[] = [
-  'ON_HOLD',
-  'IN_PROCESS',
-  'SHORTLISTED',
-  'REJECTED',
+  'on_hold',
+  'in_process',
+  'shortlisted',
+  'rejected',
 ];
 
 export const ApplicantsGenders: GenderType[] = ['male', 'female'];
+
+export const ApplicationFilterFields = {
+  exactMatch: ['status', 'gender'],
+};

@@ -4,6 +4,8 @@ import { CreateJobValidationSchemaType } from '../validation';
 import { Application } from '../models/application.model';
 import { AppError } from '../utils/app-error';
 import { Job } from '../models/job.model';
+import { FieldPicker } from '../utils/helper';
+import { ApplicationFilterFields } from '../constants/application.constants';
 
 async function CreateApplication(payload: CreateJobValidationSchemaType) {
   const session = await mongoose.startSession();
@@ -43,4 +45,38 @@ async function CreateApplication(payload: CreateJobValidationSchemaType) {
   }
 }
 
-export const ApplicationServices = { CreateApplication };
+async function GetApplication(query: Record<string, string>) {
+  const findQuery: Record<string, any> = {};
+
+  // to find by id
+  if (query._id) {
+    findQuery._id = query._id;
+  }
+
+  // to search by user's name
+  if (query.name) {
+    findQuery.name = { $regex: query.name, $options: 'i' };
+  }
+
+  // for the which needs to be  matched exactly
+  const exactMath = FieldPicker(query, ApplicationFilterFields.exactMatch);
+  if (Object.keys(exactMath).length) {
+    Object.keys(exactMath).forEach((key) => {
+      findQuery[key] = exactMath[key].toLowerCase();
+    });
+  }
+
+  // for pagination
+  const page = Number(query.page) || 1;
+  const limit = Number(query.limit) || 5;
+
+  const applications = await Application.find(findQuery)
+    .sort({
+      createdAt: -1,
+    })
+    .skip((page - 1) * limit)
+    .limit(limit);
+  return applications;
+}
+
+export const ApplicationServices = { CreateApplication, GetApplication };

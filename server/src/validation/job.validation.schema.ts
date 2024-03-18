@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { RequiredMsg } from '../utils/helper';
 
 const CreateJobValidationSchema = z.object({
-  job: z.string({ required_error: RequiredMsg('Job Id') }),
   title: z.string({ required_error: RequiredMsg('Title') }),
   description: z.string({ required_error: RequiredMsg('Description') }),
   salary: z.number({ required_error: RequiredMsg('Salary') }),

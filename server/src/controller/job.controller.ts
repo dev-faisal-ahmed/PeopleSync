@@ -17,7 +17,7 @@ const GetJobs = TryCatch(async (req, res) => {
 
   return SendSuccessResponse(res, {
     data: jobs,
-    message: 'Job Created Successfully',
+    message: 'Job Retrieved Successfully',
     status: 200,
   });
 });

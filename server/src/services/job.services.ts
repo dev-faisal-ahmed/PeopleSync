@@ -1,10 +1,14 @@
 import { JobFilterFields } from '../constants/job.constants';
 import { Job } from '../models/job.model';
-import { FieldPicker } from '../utils/helper';
+import { ConvertToLowerCase, FieldPicker } from '../utils/helper';
 import { CreateJobValidationSchemaType } from '../validation';
 
 async function CreateJob(payload: CreateJobValidationSchemaType) {
-  const newJob = await Job.create(payload);
+  // converting the skillsSets into an lowerCase
+  const newJob = await Job.create({
+    ...payload,
+    skillsSet: ConvertToLowerCase(payload.skillsSet),
+  });
   return newJob;
 }
 
@@ -28,10 +32,10 @@ async function GetJobs(query: Record<string, string>) {
     orOperation.push({ skillsSet: { $in: lists } });
   }
 
-  findQuery['$or'] = orOperation;
+  console.log(orOperation);
+  if (orOperation.length) findQuery['$or'] = orOperation;
 
   // minMax Salary
-
   const salary: Record<string, any> = {};
   if (query.minSalary) {
     salary['$gte'] = Number(query.minSalary);
@@ -58,13 +62,21 @@ async function GetJobs(query: Record<string, string>) {
     findQuery.experienceRequired = experienceRequired;
   }
 
-  console.log(query.maxSalary);
-  console.dir(findQuery, { depth: 'infinity' });
+  const page = Number(query.page) || 1;
+  const limit = Number(query.limit) || 5;
 
-  // const jobs = await Job.find(findQuery);
-  const jobs = await Job.find(findQuery);
+  // to avoid sorting for unwanted fields
+  const sortBy = JobFilterFields.sortBaleFields.includes(query.sortBy)
+    ? query.sortBy
+    : 'createdAt';
+  const sortOrder = query.sortOrder === 'asc' ? 1 : -1;
 
-  return { jobs };
+  const jobs = await Job.find(findQuery)
+    .sort({ [sortBy]: sortOrder })
+    .skip((page - 1) * limit)
+    .limit(limit);
+
+  return jobs;
 }
 
 export const JobServices = {

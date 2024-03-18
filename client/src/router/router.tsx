@@ -1,14 +1,23 @@
+import { MainLayout } from '@/components/layout/main-layout';
 import { Suspense, lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 const LoginPage = lazy(() => import('@/pages/(auth)/login'));
 const HomePage = lazy(() => import('@/pages/(main)/home'));
 const JobPage = lazy(() => import('@/pages/(main)/jobs'));
+const NotFoundPage = lazy(() => import('@/pages/not-found/not-found'));
 
 const router = createBrowserRouter([
-  { path: '/', element: <HomePage /> },
-  { path: '/jobs', element: <JobPage /> },
+  {
+    path: '/',
+    element: <MainLayout />,
+    children: [
+      { path: '/', element: <HomePage /> },
+      { path: '/jobs', element: <JobPage /> },
+    ],
+  },
   { path: '/login', element: <LoginPage /> },
+  { path: '*', element: <NotFoundPage /> },
 ]);
 
 export function AppRouter() {

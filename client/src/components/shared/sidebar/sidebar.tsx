@@ -11,7 +11,7 @@ type SidebarProps = {
 export function Sidebar({ className }: SidebarProps) {
   const location = useLocation();
   return (
-    <aside className={cn('h-screen border-r bg-white p-3', className)}>
+    <aside className={cn('h-screen bg-white p-3', className)}>
       <Logo />
       <div className='mt-6 flex flex-col gap-2'>
         {Object.keys(sidebarLinks).map((eachMenu) => (

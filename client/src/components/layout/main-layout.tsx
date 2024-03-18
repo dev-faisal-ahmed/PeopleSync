@@ -5,7 +5,9 @@ import { Topbar } from '../shared/topbar/topbar';
 export function MainLayout() {
   return (
     <section className='grid grid-cols-1 md:grid-cols-[auto_1fr]'>
-      <Sidebar className='hidden md:block' />
+      <section className='no_scrollbar sticky left-0 top-0 hidden h-screen overflow-y-auto border-r md:block'>
+        <Sidebar />
+      </section>
       <section>
         <Topbar />
         <main>

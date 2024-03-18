@@ -1,4 +1,6 @@
 import { cn } from '@/lib/utils';
+import { useAppDispatch } from '@/redux/redux-hook';
+import { updateIsSidebarOpen } from '@/redux/slices/ui-slice';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,10 +17,12 @@ export function SidebarLink({
   icon,
   currentUrl,
 }: SidebarLinkProps) {
+  const dispatch = useAppDispatch();
   return (
     <Link
+      onClick={() => dispatch(updateIsSidebarOpen(false))}
       className={cn(
-        `hover:bg-primary flex gap-3 rounded-md py-2 pl-3 pr-16 text-sm transition-colors duration-300 hover:text-white`,
+        `flex items-center gap-3 rounded-md py-2 pl-3 pr-16 text-sm transition-colors duration-300 hover:bg-gray-400 hover:text-white`,
         currentUrl === url ? 'bg-primary text-white' : null,
       )}
       to={url}

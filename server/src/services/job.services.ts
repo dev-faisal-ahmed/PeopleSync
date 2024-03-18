@@ -32,7 +32,6 @@ async function GetJobs(query: Record<string, string>) {
     orOperation.push({ skillsSet: { $in: lists } });
   }
 
-  console.log(orOperation);
   if (orOperation.length) findQuery['$or'] = orOperation;
 
   // minMax Salary

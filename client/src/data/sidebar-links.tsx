@@ -13,7 +13,7 @@ export const sidebarLinks: Record<string, SidebarLinkType[]> = {
   Menu: [
     { url: '/', title: 'Dashboard', icon: <DashboardIcon /> },
     { url: '/messages', title: 'Messages', icon: <MailIcon /> },
-    { url: '/messages', title: 'Messages', icon: <CalenderIcon /> },
+    { url: '/calender', title: 'Calender', icon: <CalenderIcon /> },
   ],
   Recruitment: [
     { url: '/jobs', title: 'Jobs', icon: <BriefcaseBusinessIcon /> },

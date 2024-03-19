@@ -1,4 +1,5 @@
 import { MainLayout } from '@/components/layout/main-layout';
+import { Loader } from '@/components/shared/loader';
 import { ProtectedWrapper } from '@/components/shared/projected-wrapper';
 import { Suspense, lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -59,8 +60,8 @@ export function AppRouter() {
   return (
     <Suspense
       fallback={
-        <div className='flex h-screen items-center justify-center bg-gray-500/50'>
-          Loading.....
+        <div className='bg-primary-50 flex h-screen w-full items-center justify-center'>
+          <Loader />
         </div>
       }
     >

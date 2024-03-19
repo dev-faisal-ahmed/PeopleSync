@@ -62,7 +62,7 @@ async function GetJobs(query: Record<string, string>) {
   }
 
   const page = Number(query.page) || 1;
-  const limit = Number(query.limit) || 5;
+  const limit = Number(query.limit) || 50;
 
   // to avoid sorting for unwanted fields
   const sortBy = JobFilterFields.sortBaleFields.includes(query.sortBy)

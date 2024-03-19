@@ -46,7 +46,7 @@ export function Statistics() {
   console.log(applicationData);
 
   return (
-    <div>
+    <div className='w-full'>
       <h1 className='mb-5 font-bold'>Statistics of Active Applications</h1>
       <p>Max : {applicationDataByDate.max}</p>
       <hr />

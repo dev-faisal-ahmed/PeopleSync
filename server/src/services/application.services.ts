@@ -72,7 +72,7 @@ async function GetApplication(query: Record<string, string>) {
 
   // for pagination
   const page = Number(query.page) || 1;
-  const limit = Number(query.limit) || 5;
+  const limit = Number(query.limit) || 50;
 
   const applications = await Application.find(findQuery)
     .sort({ createdAt: -1 })

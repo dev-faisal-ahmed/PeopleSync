@@ -16,7 +16,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div className='mt-6 flex flex-col gap-2'>
         {Object.keys(sidebarLinks).map((eachMenu) => (
           <div key={eachMenu}>
-            <h3 className='mb-1 font-semibold'>{eachMenu}</h3>
+            <h3 className='mb-2 font-semibold'>{eachMenu}</h3>
             <div className='flex flex-col gap-1'>
               {sidebarLinks[eachMenu].map((link) => (
                 <SidebarLink

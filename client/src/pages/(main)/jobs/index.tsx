@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useGetJobsQuery } from '@/redux/api/job';
 import { Plus as PlusIcons } from 'lucide-react';
-import { JobCard } from './job-card/job-card';
+import { JobCard } from '../../../components/shared/job-card/job-card';
 import { Link } from 'react-router-dom';
 
 export default function JobPage() {

@@ -31,7 +31,7 @@ const UpdateApplicationStatus = TryCatch(async (req, res) => {
 
   return SendSuccessResponse(res, {
     data: updatedApplication,
-    message: 'Application Retrieved',
+    message: 'Application Status Updated',
     status: 200,
   });
 });

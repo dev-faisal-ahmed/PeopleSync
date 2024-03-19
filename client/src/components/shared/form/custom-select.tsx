@@ -16,6 +16,7 @@ type CustomSelectProps = {
   selectedOption: string;
   onSelectionChange: (value: string) => void;
   className?: string;
+  disable?: boolean;
 };
 
 export function CustomSelect({
@@ -25,11 +26,16 @@ export function CustomSelect({
   selectedOption,
   onSelectionChange,
   className,
+  disable,
 }: CustomSelectProps) {
   return (
     <div className={cn('relative flex flex-col gap-2', className)}>
       {label && <label className='font-semibold'>{label}</label>}
-      <Select value={selectedOption} onValueChange={onSelectionChange}>
+      <Select
+        disabled={disable}
+        value={selectedOption}
+        onValueChange={onSelectionChange}
+      >
         <SelectTrigger>
           <SelectValue placeholder={label || placeholder} />
         </SelectTrigger>

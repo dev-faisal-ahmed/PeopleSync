@@ -1,6 +1,9 @@
 import { baseApi } from '..';
 import { ServerResponseType } from '../api.types';
-import { CreateApplicationRequestType } from './application-api.type';
+import {
+  CreateApplicationRequestType,
+  UpdateApplicationStatusRequestType,
+} from './application-api.type';
 import { ApplicationType } from '@/utils/types/application.type';
 
 const APPLICATION_URL = 'application';
@@ -18,6 +21,18 @@ const applicationApi = baseApi.injectEndpoints({
       invalidatesTags: ['applications', 'jobs'],
     }),
 
+    updateApplicationStatus: builder.mutation<
+      ServerResponseType<unknown>,
+      UpdateApplicationStatusRequestType
+    >({
+      query: (payload) => ({
+        url: `${APPLICATION_URL}`,
+        method: 'PATCH',
+        body: payload,
+      }),
+      invalidatesTags: ['applications-for-job'],
+    }),
+
     getApplicationByJobId: builder.query<
       ServerResponseType<ApplicationType[]>,
       string
@@ -28,5 +43,8 @@ const applicationApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCarateApplicationMutation, useGetApplicationByJobIdQuery } =
-  applicationApi;
+export const {
+  useCarateApplicationMutation,
+  useGetApplicationByJobIdQuery,
+  useUpdateApplicationStatusMutation,
+} = applicationApi;

@@ -1,5 +1,6 @@
 import { SidebarLinkType } from '@/utils/types/sidebar.types';
 import {
+  BookCheck as BookCheckIcon,
   BriefcaseBusiness as BriefcaseBusinessIcon,
   Calendar as CalenderIcon,
   LayoutDashboard as DashboardIcon,
@@ -27,4 +28,5 @@ export const sidebarLinks: Record<string, SidebarLinkType[]> = {
     { url: '/employees', title: 'Employees', icon: <UsersIcon /> },
     { url: '/reports', title: 'Reports', icon: <PieChartIcon /> },
   ],
+  ForApplicants: [{ url: '/apply', title: 'Apply', icon: <BookCheckIcon /> }],
 };

@@ -1,4 +1,4 @@
-import { serverAddress } from '@/data/server-address';
+import { serverAddress } from '@/config/config';
 import { getTokenFormLocal } from '@/utils/helper/token-helper';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
@@ -16,6 +16,6 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery,
-  tagTypes: [],
+  tagTypes: ['jobs', 'applications'],
   endpoints: () => ({}),
 });

@@ -7,6 +7,7 @@ const HomePage = lazy(() => import('@/pages/(main)/home'));
 const JobPage = lazy(() => import('@/pages/(main)/jobs'));
 const NotFoundPage = lazy(() => import('@/pages/not-found/not-found'));
 const AddJobPage = lazy(() => import('@/pages/(main)/add-job'));
+const ApplyJob = lazy(() => import('@/pages/(main)/apply-job'));
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: '/', element: <HomePage /> },
       { path: '/jobs', element: <JobPage /> },
       { path: '/add-job', element: <AddJobPage /> },
+      { path: '/apply', element: <ApplyJob /> },
     ],
   },
   { path: '/login', element: <LoginPage /> },

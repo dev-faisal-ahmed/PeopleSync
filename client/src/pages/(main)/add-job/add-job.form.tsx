@@ -67,7 +67,7 @@ export function AddJobFrom() {
         description: data.description.trim(),
         salary: Number(data.salary),
         vacancy: Number(data.vacancy),
-        skillsSet: Object.values(setSkillsSet),
+        skillsSet: Object.values(skillsSets),
         experienceRequired: Number(data.experienceRequired) || 0,
       }).unwrap();
 

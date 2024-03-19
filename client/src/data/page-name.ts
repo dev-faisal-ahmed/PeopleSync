@@ -3,4 +3,5 @@ export const pageName: Record<string, string> = {
   '/jobs': 'Jobs',
   '/applications': 'Applications',
   '/add-job': 'Add New Job',
+  '/apply': 'Apply For Job',
 };

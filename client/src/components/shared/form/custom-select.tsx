@@ -7,12 +7,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 
 type CustomSelectProps = {
   label: string;
   options: string[];
   selectedOption: string;
   onSelectionChange: (value: string) => void;
+  className?: string;
 };
 
 export function CustomSelect({
@@ -20,9 +22,10 @@ export function CustomSelect({
   options,
   selectedOption,
   onSelectionChange,
+  className,
 }: CustomSelectProps) {
   return (
-    <div className='relative flex flex-col gap-2'>
+    <div className={cn('relative flex flex-col gap-2', className)}>
       <label className='font-semibold'>{label}</label>
       <Select value={selectedOption} onValueChange={onSelectionChange}>
         <SelectTrigger>

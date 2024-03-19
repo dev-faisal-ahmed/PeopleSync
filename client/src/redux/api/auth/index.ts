@@ -1,6 +1,6 @@
 import { baseApi } from '..';
-import { ServerResponseType } from '../api-types';
-import { LoginRequestType } from './auth-types';
+import { ServerResponseType } from '../api.types';
+import { LoginRequestType } from './auth.types';
 
 const AUTH_URL = 'auth';
 export const authApi = baseApi.injectEndpoints({

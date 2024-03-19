@@ -1,7 +1,7 @@
 import { useGetJobsQuery } from '@/redux/api/job';
 import { useState } from 'react';
 import { ApplicationSelect } from './application-select';
-import { ApplicationInfo } from './application-info';
+import { ApplicationInfo } from './application-info/application-info';
 
 export default function ApplicationPage() {
   const { data: jobsData } = useGetJobsQuery('');

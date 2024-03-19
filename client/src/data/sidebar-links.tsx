@@ -12,21 +12,23 @@ import {
 
 export const sidebarLinks: Record<string, SidebarLinkType[]> = {
   Menu: [
-    { url: '/', title: 'Dashboard', icon: <DashboardIcon /> },
-    { url: '/messages', title: 'Messages', icon: <MailIcon /> },
-    { url: '/calender', title: 'Calender', icon: <CalenderIcon /> },
+    { url: '/', title: 'Dashboard', icon: <DashboardIcon size={20} /> },
+    { url: '/messages', title: 'Messages', icon: <MailIcon size={20} /> },
+    { url: '/calender', title: 'Calender', icon: <CalenderIcon size={20} /> },
   ],
   Recruitment: [
-    { url: '/jobs', title: 'Jobs', icon: <BriefcaseBusinessIcon /> },
+    { url: '/jobs', title: 'Jobs', icon: <BriefcaseBusinessIcon size={20} /> },
     {
       url: '/applications',
       title: 'Applications',
-      icon: <NewspaperIcon />,
+      icon: <NewspaperIcon size={20} />,
     },
   ],
   Organization: [
-    { url: '/employees', title: 'Employees', icon: <UsersIcon /> },
-    { url: '/reports', title: 'Reports', icon: <PieChartIcon /> },
+    { url: '/employees', title: 'Employees', icon: <UsersIcon size={20} /> },
+    { url: '/reports', title: 'Reports', icon: <PieChartIcon size={20} /> },
   ],
-  ForApplicants: [{ url: '/apply', title: 'Apply', icon: <BookCheckIcon /> }],
+  ForApplicants: [
+    { url: '/apply', title: 'Apply', icon: <BookCheckIcon size={20} /> },
+  ],
 };

@@ -13,7 +13,7 @@ export default function JobPage() {
           <PlusIcons size={20} /> Create A Job
         </Button>
       </Link>
-      <section className='mt-5 grid grid-cols-3 gap-6'>
+      <section className='mt-5 grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
         {jobData?.data.map((job) => <JobCard key={job._id} {...job} />)}
       </section>
     </section>

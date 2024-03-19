@@ -8,6 +8,7 @@ export function JobCardForApply({
   experienceRequired,
   skillsSet,
   _id,
+  description,
 }: JobType) {
   return (
     <div className='rounded-lg bg-primary-foreground/50 p-5'>
@@ -16,6 +17,7 @@ export function JobCardForApply({
         <div className='flex items-center gap-2'>
           <ReceiptPoundSterling size={25} /> {salary}
         </div>
+
         <div className='flex items-center gap-2'>
           <BriefcaseBusiness size={25} />{' '}
           {experienceRequired
@@ -25,6 +27,7 @@ export function JobCardForApply({
             : 'N/A'}
         </div>
       </div>
+
       <ul className='my-3 ml-5'>
         {skillsSet.map((skill) => (
           <li key={skill} className='list-disc capitalize'>
@@ -32,6 +35,9 @@ export function JobCardForApply({
           </li>
         ))}
       </ul>
+      <p className='mb-5 mt-3 line-clamp-3 text-justify text-gray-600'>
+        {description}
+      </p>
       <ApplyJobForm key={_id} job={_id} />
     </div>
   );

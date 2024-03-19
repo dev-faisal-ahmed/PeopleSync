@@ -1,15 +1,19 @@
 import mongoose from 'mongoose';
 import HTTP from 'http-status-codes';
-import { CreateJobValidationSchemaType } from '../validation';
 import { Application } from '../models/application.model';
 import { AppError } from '../utils/app-error';
 import { Job } from '../models/job.model';
 import { FieldPicker } from '../utils/helper';
 import { ApplicationFilterFields } from '../constants/application.constants';
 import { ApplicationStatusType } from '../interfaces/application.interface';
-import { UpdateApplicationStatusValidationType } from '../validation/application.validation';
+import {
+  CreateApplicationValidationSchemaType,
+  UpdateApplicationStatusValidationType,
+} from '../validation/application.validation';
 
-async function CreateApplication(payload: CreateJobValidationSchemaType) {
+async function CreateApplication(
+  payload: CreateApplicationValidationSchemaType,
+) {
   const session = await mongoose.startSession();
 
   try {
@@ -83,12 +87,12 @@ async function UpdateApplicationStatus(
   const application = await Application.findById(payload.applicationId);
   if (!application) throw new AppError('No Application Found!', HTTP.NOT_FOUND);
 
-  /* 
+  /*
    * on_hold => inprogress => shortlisted
    * on_hold | inprogress => rejected
-   ! shortlisted !=> rejected
-   ! rejected !=> on_hold | inprogress | shortlisted
-  */
+   * shortlisted !=> rejected
+   * rejected !=> on_hold | inprogress | shortlisted
+   */
 
   const updateRules: Record<ApplicationStatusType, ApplicationStatusType[]> = {
     on_hold: ['in_process', 'rejected'],
@@ -111,8 +115,14 @@ async function UpdateApplicationStatus(
   return application;
 }
 
+async function GetApplicationFromJobId(jobId: string) {
+  const applications = await Application.find({ job: jobId });
+  return applications;
+}
+
 export const ApplicationServices = {
   CreateApplication,
   GetApplication,
   UpdateApplicationStatus,
+  GetApplicationFromJobId,
 };

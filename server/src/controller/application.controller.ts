@@ -31,6 +31,17 @@ const UpdateApplicationStatus = TryCatch(async (req, res) => {
 
   return SendSuccessResponse(res, {
     data: updatedApplication,
+    message: 'Application Retrieved',
+    status: 200,
+  });
+});
+
+const GetApplicationByJobId = TryCatch(async (req, res) => {
+  const applications = await ApplicationServices.GetApplicationFromJobId(
+    req.params.jobId,
+  );
+  return SendSuccessResponse(res, {
+    data: applications,
     message: 'Application Updated',
     status: 200,
   });
@@ -40,4 +51,5 @@ export const ApplicationController = {
   CreateApplication,
   GetApplication,
   UpdateApplicationStatus,
+  GetApplicationByJobId,
 };

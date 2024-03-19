@@ -20,3 +20,9 @@ ApplicationRouter.patch(
 );
 
 ApplicationRouter.get('/', AuthGuard(), ApplicationController.GetApplication);
+
+ApplicationRouter.get(
+  '/:jobId',
+  AuthGuard(),
+  ApplicationController.GetApplicationByJobId,
+);

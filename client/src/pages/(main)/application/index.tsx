@@ -16,7 +16,7 @@ export default function ApplicationPage() {
           <div>
             <p className='mb-2 font-medium'>On Going Recruitment</p>
             <ApplicationSelect
-              className='max-w-60'
+              className='max-w-72'
               jobs={jobsData?.data}
               onSelectedIdChange={onJobIdChange}
               selectedId={jobId}

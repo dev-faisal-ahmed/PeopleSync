@@ -18,7 +18,15 @@ const applicationApi = baseApi.injectEndpoints({
         method: 'POST',
         body: payload,
       }),
-      invalidatesTags: ['applications', 'jobs'],
+      invalidatesTags: ['applications', 'jobs', 'applications-for-job'],
+    }),
+
+    getAllApplications: builder.query<
+      ServerResponseType<ApplicationType[]>,
+      null
+    >({
+      query: () => ({ url: `${APPLICATION_URL}` }),
+      providesTags: ['applications'],
     }),
 
     updateApplicationStatus: builder.mutation<
@@ -30,7 +38,7 @@ const applicationApi = baseApi.injectEndpoints({
         method: 'PATCH',
         body: payload,
       }),
-      invalidatesTags: ['applications-for-job'],
+      invalidatesTags: ['applications-for-job', 'applications'],
     }),
 
     getApplicationByJobId: builder.query<
@@ -47,4 +55,5 @@ export const {
   useCarateApplicationMutation,
   useGetApplicationByJobIdQuery,
   useUpdateApplicationStatusMutation,
+  useGetAllApplicationsQuery,
 } = applicationApi;

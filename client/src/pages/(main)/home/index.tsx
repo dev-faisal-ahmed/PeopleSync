@@ -1,7 +1,18 @@
+import { Statistics } from './statistics/statistics';
+import { Summary } from './summary/summary';
+
 export default function HomePage() {
   return (
-    <div>
-      <div>Home Page</div>
-    </div>
+    <section className='px-6'>
+      <section className='flex'>
+        <div>
+          <Summary />
+          <div className='mt-3'>
+            <Statistics />
+          </div>
+        </div>
+        <section></section>
+      </section>
+    </section>
   );
 }

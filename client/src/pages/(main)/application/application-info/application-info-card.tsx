@@ -28,7 +28,7 @@ export function ApplicationInfoCard({
   gender,
   createdAt,
 }: ApplicationType) {
-  const { refetch } = useGetApplicationByJobIdQuery(_id);
+  const { refetch } = useGetApplicationByJobIdQuery(_id, { skip: !_id });
   const [updateStatus, { isLoading }] = useUpdateApplicationStatusMutation();
 
   const onStatusChange = async (value: string) => {

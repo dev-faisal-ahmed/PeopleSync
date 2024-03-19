@@ -30,7 +30,7 @@ type FiledNameType = 'email' | 'password';
 export function LoginForm() {
   const form = useForm<LoginFromSchemaType>({
     resolver: zodResolver(LoginFormSchema),
-    defaultValues: { email: '', password: '' },
+    defaultValues: { email: 'admin@peoplesync.com', password: 'admin' },
   });
 
   const navigate = useNavigate();

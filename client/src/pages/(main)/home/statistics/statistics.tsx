@@ -43,8 +43,6 @@ export function Statistics() {
     return data;
   }, [applicationData]);
 
-  console.log(applicationData);
-
   return (
     <div className='w-full'>
       <h1 className='mb-5 font-bold'>Statistics of Active Applications</h1>
@@ -52,7 +50,10 @@ export function Statistics() {
       <hr />
       <div style={{ height: '200px' }} className='mt-5 grid grid-cols-7 gap-5'>
         {Object.values(applicationDataByDate.data).map((data) => (
-          <div className='flex h-full flex-col items-center justify-end'>
+          <div
+            key={data.date}
+            className='flex h-full flex-col items-center justify-end'
+          >
             <div
               key={data.date + 'short'}
               style={{

@@ -1,4 +1,5 @@
 import { MainLayout } from '@/components/layout/main-layout';
+import { ProtectedWrapper } from '@/components/shared/projected-wrapper';
 import { Suspense, lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
@@ -15,11 +16,39 @@ const router = createBrowserRouter([
     path: '/',
     element: <MainLayout />,
     children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/jobs', element: <JobPage /> },
-      { path: '/add-job', element: <AddJobPage /> },
+      {
+        path: '/',
+        element: (
+          <ProtectedWrapper>
+            <HomePage />
+          </ProtectedWrapper>
+        ),
+      },
+      {
+        path: '/jobs',
+        element: (
+          <ProtectedWrapper>
+            <JobPage />
+          </ProtectedWrapper>
+        ),
+      },
+      {
+        path: '/add-job',
+        element: (
+          <ProtectedWrapper>
+            <AddJobPage />
+          </ProtectedWrapper>
+        ),
+      },
       { path: '/apply', element: <ApplyJobPage /> },
-      { path: '/applications', element: <ApplicationPage /> },
+      {
+        path: '/applications',
+        element: (
+          <ProtectedWrapper>
+            <ApplicationPage />
+          </ProtectedWrapper>
+        ),
+      },
     ],
   },
   { path: '/login', element: <LoginPage /> },
